@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "musicbiomes",
+  "version": "${version}",
+
+  "name": "Music Biomes",
+  "description": "Adds music to biomes",
+  "authors": [
+    "redsox"
+  ],
+  "contact": {
+    "homepage": "https://github.com/scarey3/music-biomes",
+    "sources": "https://github.com/scarey3/music-biomes"
+  },
+
+  "license": " Apache-2.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "me.scarey.musicbiomes.MusicBiomes"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  }
+}
