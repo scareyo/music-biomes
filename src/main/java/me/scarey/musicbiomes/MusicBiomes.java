@@ -7,7 +7,6 @@ import net.minecraft.sound.MusicSound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 
@@ -37,13 +36,15 @@ public class MusicBiomes implements ClientModInitializer {
 		// Register client tick listener
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {
 			if(client.player != null) {
-				DynamicRegistryManager registryManager = client.world.getRegistryManager();
+				Registry<SoundEvent> soundRegistry = client.world.getRegistryManager().get(Registry.SOUND_EVENT_KEY);
+				Registry<Biome> biomeRegistry = client.world.getRegistryManager().get(Registry.BIOME_KEY);
+
 				BlockPos pos = client.player.getBlockPos();
-				Identifier biome = registryManager.get(Registry.BIOME_KEY).getId(client.world.getBiome(pos));
+				Identifier biome = biomeRegistry.getId(client.world.getBiome(pos));
 
 				// Check if the player has switched biomes or if the song has stopped
 				if (biome != wrapper.biome || !client.getMusicTracker().isPlayingType(wrapper.music)) {
-					SoundEvent soundEvent = registryManager.get(Registry.SOUND_EVENT_KEY).get(biomeToSoundEvent(biome));
+					SoundEvent soundEvent = soundRegistry.get(biomeToSoundEvent(biome));
 
 					MusicSound music = new MusicSound(soundEvent, 0, 0, true);
 					client.getMusicTracker().stop();
