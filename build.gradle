@@ -1,13 +1,22 @@
 plugins {
 	id 'fabric-loom' version '0.9-SNAPSHOT'
+	id 'me.qoomon.git-versioning' version '5.1.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_16
 targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = '0.0.0-SNAPSHOT'
 group = project.maven_group
+
+gitVersioning.apply {
+	refs {
+		branch('.+') {
+			version = '${describe}'
+		}
+	}
+}
 
 dependencies {
 	// To change the versions see the gradle.properties file
