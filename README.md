@@ -7,12 +7,14 @@ Your resource pack should be structured as following:
 ```
 ├── pack.mcmeta
 └── assets
-    └── <namespace>
-        ├── sounds.json
+    ├── musicbiomes
+    |   └── sounds.json
+    |    
+    └── <your_namespace>
         └── sounds
-            ├── <your_beach_sound_file>.ogg
-            ├── <your_forest_sound_file>.ogg
-            └── <your_ocean_sound_file>.ogg
+            ├── <your_beach_sound>.ogg
+            ├── <your_forest_sound_1>.ogg
+            └── <your_forest_sound_2>.ogg
 ```
 Note that filenames must contain only ```[a-z 0-9 / . _ -]```
 
@@ -25,7 +27,7 @@ All sound events are defined as ```music.<namespace>.<biome>```. Add the followi
   "music.minecraft.beach": {
     "sounds": [
       {
-        "name": "<namespace>:<your_beach_sound_file>",
+        "name": "<namespace>:<your_beach_sound>",
         "stream": true
       }
     ]
@@ -33,19 +35,15 @@ All sound events are defined as ```music.<namespace>.<biome>```. Add the followi
   "music.minecraft.forest": {
     "sounds": [
       {
-        "name": "<namespace>:<your_forest_sound_file>",
+        "name": "<namespace>:<your_forest_sound_1>",
+        "stream": true
+      },
+      {
+        "name": "<namespace>:<your_forest_sound_2>",
         "stream": true
       }
     ]
   },
-  "music.minecraft.ocean": {
-    "sounds": [
-      {
-        "name": "<namespace>:<your_ocean_sound_file>",
-        "stream": true
-      }
-    ]
-  }
 }
 ```
 See https://minecraft.fandom.com/wiki/Sounds.json for more information
